@@ -14,6 +14,14 @@ protocol GameBrainProtocol : AnyObject {
 }
 
 class GameBrain {
+    
+    private struct Constant {
+        static let initialTimer = 1.0
+        static let visibilityTimer = 0.1
+        static let visibilityTimeout = 2
+        static let hidden = true
+    }
+    
     private weak var viewController: GameViewControllerProtocol?
     private var timerManager = GameTimerManager()
     private var winningScore = 0
@@ -24,6 +32,7 @@ class GameBrain {
     private var totalGamesPlayed = ""
     private var randomTimeout = 0
     private var currentTime = 0
+    private var timeoutReached = false
     
     private func processWinningScore() {
         updateWinningScore()
@@ -70,7 +79,60 @@ class GameBrain {
     
     private func startInitialTimer() {
         timerManager.setDelegate(self)
-        timerManager.startInitialTimer()
+        timerManager.startTimer(Constant.initialTimer)
+    }
+    
+    private func updateCurrentTime() {
+        currentTime += 1
+    }
+    
+    private func validateCurrentTime(_ timeout: Int) {
+        timeoutReached = currentTime == timeout
+    }
+    
+    private func processInitialTimeout() {
+        if timeoutReached {
+            stopTimer()
+            resetCurrentTime()
+            updateVisibility(!Constant.hidden)
+            timerManager.startTimer(Constant.visibilityTimer)
+        }
+    }
+    
+    private func stopTimer() {
+        timerManager.stopTimer()
+    }
+    
+    private func resetCurrentTime() {
+        currentTime = 0
+        timeoutReached = false
+    }
+    
+    private func updateVisibility(_ visibility: Bool) {
+        guard let viewController = viewController else {
+            return
+        }
+        viewController.updateGameButtonVisibility(with: visibility)
+    }
+    
+    private func processVisibilityTimeout() {
+        if timeoutReached {
+            stopTimer()
+            resetCurrentTime()
+            processLosingScore()
+            processTotalGamesPlayed()
+            updateUI()
+        }
+    }
+    
+    private func updateUI() {
+        updateVisibility(Constant.hidden)
+        guard let viewController = viewController else {
+            return
+        }
+        viewController.showLosingAlert()
+        viewController.setLosingScore(with: losingScoreMessage)
+        viewController.setTotalGames(with: totalGamesPlayed)
     }
 }
 
@@ -83,11 +145,11 @@ extension GameBrain : GameBrainProtocol {
         guard let viewController = viewController else {
             return
         }
-        timerManager.stopVisibilityTimer()
+        timerManager.stopTimer()
         currentTime = 0
         processWinningScore()
         processTotalGamesPlayed()
-        viewController.updateUIVisibility(with: true)
+        viewController.updateGameButtonVisibility(with: true)
         viewController.showWinningAlert()
         viewController.setWinningScore(with: winningScoreMessage)
         viewController.setTotalGames(with: totalGamesPlayed)
@@ -101,32 +163,14 @@ extension GameBrain : GameBrainProtocol {
 
 extension GameBrain : GameTimerManagerDelegate {
     func processInitialTimerTick() {
-        currentTime += 1
-        if currentTime == randomTimeout {
-            guard let viewController = viewController else {
-                return
-            }
-            timerManager.stopInitialTimer()
-            currentTime = 0
-            viewController.updateUIVisibility(with: false)
-            timerManager.startVisibilityTimer()
-        }
+        updateCurrentTime()
+        validateCurrentTime(randomTimeout)
+        processInitialTimeout()
     }
     
     func processVisibilityTimerTick() {
-        currentTime += 1
-        if currentTime > 2 {
-            guard let viewController = viewController else {
-                return
-            }
-            timerManager.stopVisibilityTimer()
-            currentTime = 0
-            processLosingScore()
-            processTotalGamesPlayed()
-            viewController.updateUIVisibility(with: true)
-            viewController.showLosingAlert()
-            viewController.setLosingScore(with: losingScoreMessage)
-            viewController.setTotalGames(with: totalGamesPlayed)
-        }
+        updateCurrentTime()
+        validateCurrentTime(Constant.visibilityTimeout)
+        processVisibilityTimeout()
     }
 }

@@ -5,6 +5,7 @@
 //  Created by Mac on 20/12/22.
 //
 import Foundation
+import AVFoundation
 
 protocol TimerBrainProtocol : AnyObject {
     func setViewController (_ viewController: TimerViewControllerProtocol)
@@ -21,6 +22,7 @@ class TimerBrain {
     private var timeRemainingPresenter = TimeRemainingPresenter()
     private var timeProgressCalculator = TimeProgressCalculator()
     private var timerManager = TimerManager()
+    private let timerPlayer = TimerAudioPlayer()
     
     private func updateUI() {
         updateRemainingTime()
@@ -54,6 +56,10 @@ class TimerBrain {
         timerManager.setDelegate(self)
         timerManager.starTimer()
     }
+    
+    private func startVibration() {
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+    }
 }
 
 extension TimerBrain : TimerBrainProtocol {
@@ -80,8 +86,8 @@ extension TimerBrain : TimerManagerDelegate {
         updateUI()
         if currentTime >= timeOut {
             timerManager.stopTimer()
-            timerManager.playSound()
-            timerManager.startVibration()
+            timerPlayer.playSound()
+            startVibration()
         }
     }
 }

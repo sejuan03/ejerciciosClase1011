@@ -13,19 +13,29 @@ protocol GameTimerManagerDelegate : AnyObject {
 }
 
 class GameTimerManager {
+    
+    private struct Constant {
+        static let initialInterval = 1.0
+    }
+    
     private weak var delegate: GameTimerManagerDelegate?
-    private var initialTimer: Timer?
-    private var visibilityTimer : Timer?
+    private var timer: Timer?
     
     func setDelegate(_ delegate: GameTimerManagerDelegate) {
         self.delegate = delegate
     }
     
-    func startInitialTimer() {
-        initialTimer = Timer.scheduledTimer(
-            timeInterval: 1.0,
+    func startTimer(_ timeInterval: Double) {
+        var selector: Selector!
+        if timeInterval == Constant.initialInterval {
+            selector = #selector(processInitialTick)
+        } else {
+            selector = #selector(processVisibilityTimerTick)
+        }
+        timer = Timer.scheduledTimer(
+            timeInterval: timeInterval,
             target: self,
-            selector: #selector(processInitialTick),
+            selector: selector,
             userInfo: nil,
             repeats: true)
     }
@@ -37,20 +47,6 @@ class GameTimerManager {
         delegate.processInitialTimerTick()
     }
     
-    func stopInitialTimer() {
-        initialTimer?.invalidate()
-        initialTimer = nil
-    }
-    
-    func startVisibilityTimer() {
-        visibilityTimer = Timer.scheduledTimer(
-            timeInterval: 0.1,
-            target: self,
-            selector: #selector(processVisibilityTimerTick),
-            userInfo: nil,
-            repeats: true)
-    }
-    
     @objc private func processVisibilityTimerTick() {
         guard let delegate = delegate else {
             return
@@ -58,9 +54,9 @@ class GameTimerManager {
         delegate.processVisibilityTimerTick()
     }
     
-    func stopVisibilityTimer() {
-        visibilityTimer?.invalidate()
-        visibilityTimer = nil
+    func stopTimer() {
+        timer?.invalidate()
+        timer = nil
     }
 }
 

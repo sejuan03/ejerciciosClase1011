@@ -61,7 +61,6 @@
 			isa = PBXGroup;
 			children = (
 				0492AB352952718E0000548E /* GameConfiguration */,
-				0492AB34295271850000548E /* UI */,
 				0492AB2029526FCC0000548E /* AppDelegate.swift */,
 				0492AB2229526FCC0000548E /* SceneDelegate.swift */,
 				0492AB2629526FCC0000548E /* Main.storyboard */,
@@ -72,17 +71,10 @@
 			path = Clase10Ejercicio3;
 			sourceTree = "<group>";
 		};
-		0492AB34295271850000548E /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				0492AB2429526FCC0000548E /* GameViewController.swift */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
 		0492AB352952718E0000548E /* GameConfiguration */ = {
 			isa = PBXGroup;
 			children = (
+				0492AB2429526FCC0000548E /* GameViewController.swift */,
 				0492AB36295271AA0000548E /* GameTimerManager.swift */,
 				0492AB38295271BC0000548E /* GameBrain.swift */,
 			);

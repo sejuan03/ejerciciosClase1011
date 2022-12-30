@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041FAA4B295F6EF6008FF076 /* TimerAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041FAA4A295F6EF6008FF076 /* TimerAudioPlayer.swift */; };
 		0492AAAB29491B3B0000548E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492AAAA29491B3B0000548E /* AppDelegate.swift */; };
 		0492AAAD29491B3B0000548E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492AAAC29491B3B0000548E /* SceneDelegate.swift */; };
 		0492AAAF29491B3B0000548E /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492AAAE29491B3B0000548E /* ConfigurationViewController.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		041FAA4A295F6EF6008FF076 /* TimerAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerAudioPlayer.swift; sourceTree = "<group>"; };
 		0492AAA729491B3B0000548E /* clase10Ejercicio1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = clase10Ejercicio1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0492AAAA29491B3B0000548E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0492AAAC29491B3B0000548E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				0492AB0C29522E880000548E /* TimeRemainingPresenter.swift */,
 				0492AB0E2952318A0000548E /* TimeProgressCalculator.swift */,
 				0492AB10295233820000548E /* TimerManager.swift */,
+				041FAA4A295F6EF6008FF076 /* TimerAudioPlayer.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0492AAD2294926960000548E /* TimerViewController.swift in Sources */,
+				041FAA4B295F6EF6008FF076 /* TimerAudioPlayer.swift in Sources */,
 				0492AAAF29491B3B0000548E /* ConfigurationViewController.swift in Sources */,
 				0492AAAB29491B3B0000548E /* AppDelegate.swift in Sources */,
 				0492AB0B29522D120000548E /* TimeRemainingCalculator.swift in Sources */,

@@ -13,7 +13,7 @@ protocol GameViewControllerProtocol : AnyObject {
     func setWinningScore(with winningScore: String)
     func setLosingScore(with losingScore: String)
     func setTotalGames(with totalGames: String)
-    func updateUIVisibility(with visibility: Bool)
+    func updateGameButtonVisibility(with visibility: Bool)
 }
 
 class GameViewController: UIViewController{
@@ -87,7 +87,7 @@ extension GameViewController : GameViewControllerProtocol {
         totalGamesLabel.text = totalGames
     }
     
-    func updateUIVisibility(with visibility: Bool) {
+    func updateGameButtonVisibility(with visibility: Bool) {
         gameButton.isHidden = visibility
     }
 }
