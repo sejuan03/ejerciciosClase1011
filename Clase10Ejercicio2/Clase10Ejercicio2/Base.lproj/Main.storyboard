@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Questionary View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="QuestionaryViewController" customModule="Clase10Ejercicio2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXQ-Xi-4WG">
+                                <rect key="frame" x="60" y="10" width="480" height="466"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vTL-Df-2dX">
+                                <rect key="frame" x="120" y="576" width="360" height="4"/>
+                            </progressView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UuI-IB-Ryx">
+                                <rect key="frame" x="150" y="486" width="300" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HWi-rf-NP4">
+                                        <rect key="frame" x="0.0" y="0.0" width="140" height="60"/>
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="SI"/>
+                                        <connections>
+                                            <action selector="onAffirmativeAnswerButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ggS-sj-IWz"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VMW-pE-Ptn">
+                                        <rect key="frame" x="140" y="0.0" width="20" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nD4-17-qfU">
+                                        <rect key="frame" x="160" y="0.0" width="140" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemRedColor"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="NO"/>
+                                        <connections>
+                                            <action selector="onNegativeAnswerButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5Bf-Nh-MaJ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="nD4-17-qfU" firstAttribute="leading" secondItem="HWi-rf-NP4" secondAttribute="trailing" constant="20" id="3fM-bK-VXr"/>
+                                    <constraint firstItem="HWi-rf-NP4" firstAttribute="width" secondItem="nD4-17-qfU" secondAttribute="width" id="PN0-qL-0MU"/>
+                                    <constraint firstAttribute="height" constant="60" id="js8-bl-f5T"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="UuI-IB-Ryx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="1tb-1D-8J5"/>
+                            <constraint firstItem="IXQ-Xi-4WG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="C7w-kQ-qa3"/>
+                            <constraint firstItem="vTL-Df-2dX" firstAttribute="top" secondItem="UuI-IB-Ryx" secondAttribute="bottom" constant="30" id="DpL-YN-iih"/>
+                            <constraint firstItem="IXQ-Xi-4WG" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="RXL-WS-CrU"/>
+                            <constraint firstItem="vTL-Df-2dX" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.6" id="SIR-4j-ptA"/>
+                            <constraint firstItem="UuI-IB-Ryx" firstAttribute="top" secondItem="IXQ-Xi-4WG" secondAttribute="bottom" constant="10" id="eDn-tF-rey"/>
+                            <constraint firstItem="vTL-Df-2dX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mzd-zH-lpF"/>
+                            <constraint firstItem="UuI-IB-Ryx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qWp-iG-Ogd"/>
+                            <constraint firstItem="IXQ-Xi-4WG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="rEV-Nj-2Ia"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="vTL-Df-2dX" secondAttribute="bottom" constant="20" id="zaH-he-uZl"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="questionLabel" destination="IXQ-Xi-4WG" id="uKq-DC-V0C"/>
+                        <outlet property="questionsProgressView" destination="vTL-Df-2dX" id="8RH-tz-PPc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="130.76923076923077" y="-28.436018957345969"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
